@@ -57,11 +57,19 @@ if($dado){
     <form action="../view/alterarForm.php" method="post">
       
       <input type="hidden" value="<?=$dado["idusu"] ?>" name="idusu">
-      <button type="submit" class="bnt btn-primary">Alterar</button>
+      <button type="submit" class="btn btn-primary">Alterar
+
+      </button>
 
     </form>
     </td>
-      <td><?=$dado["idusu"] ?></td>
+
+    <td>
+        <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteModal">
+    Deletar
+    </button>
+    </td>
    
     </tr>
     <?php
@@ -72,6 +80,26 @@ if($dado){
 </table>
 
 </div>
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModal">Exclusão de Usuário</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+        <button type="button" class="btn btn-primary">Sim</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 <?php
 

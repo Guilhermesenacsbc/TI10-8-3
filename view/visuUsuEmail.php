@@ -56,12 +56,17 @@ foreach($dado as $emailUsuarios):
       <form action="../view/alterarForm.php" method="post">
       
       <input type="hidden" value="<?=$emailUsuarios["idusu"] ?>" name="idusu">
-      <button type="submit" class="bnt btn-primary">Alterar</button>
+      <button type="submit" class="btn btn-primary">Alterar</button>
 
       </form>
 
     </td>
-      <td><?=$emailUsuarios["idusu"] ?></td>
+    <td>
+        <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary col-12" data-bs-toggle="modal" codigo = "<?=$emailUsuarios["idusu"] ?>" email = "<?=$emailUsuarios["emailusu"] ?>"  data-bs-target="#deleteModal">
+    Deletar
+    </button>
+    </td>
     </tr>
     <?php
       endforeach;
@@ -71,6 +76,42 @@ foreach($dado as $emailUsuarios):
 </table>
 
 </div>
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModal">Exclusão de Usuário</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+      <form action="../controler/deletarUsuario.php" method="GET">
+      
+      <input type="hidden" class="codigo formcontrol" name="codigousu">
+      
+
+      </form>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+        <button type="button" class="btn btn-primary">Sim</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  var deletarUsuarioModal = document.getElementbyId('deleteModal');
+      deletarUsuarioModal.addEventListener('show.bs.modal',function(event){
+        var button = event.relatedTarget;
+        var codigo = button.getAttribute('codigo');
+        var email = button.getAttribute('email');
+        var modalbody = deletarUsuarioModal.querySelector('.modal-body');
+        modalbody.textContent = 'Gostaria de excluir o E-mail' + email + '?';
+        var Codigo = deletarUsuarioModel.querySelector('.modal-footer .codigo');
+        codigo.value = codigo;
+      })
+  </script>
 
 <?php
 
