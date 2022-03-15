@@ -2,7 +2,7 @@
 
 include_once("../model/conexao.php");
 
-include_once("../model/usuarioModel.php");
+include_once("../model/jogoModel.php");
 
 include_once("../view/header.php");
 
@@ -12,15 +12,15 @@ extract($_REQUEST,EXTR_OVERWRITE);
 
 
 
-if(deletarUsuario($conn,$codigousu)){
+if(deletarJogo($conn,$codigojogo)){
 
-    echo("Usuario excluido com sucesso");
+    echo("Jogo excluido com sucesso");
 
    
 
       }else{
 
-    echo("Usuario não excluido");
+    echo("Jogo não excluido");
 
       }
 

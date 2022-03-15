@@ -50,7 +50,24 @@ foreach($dado as $nomeJogo):
       <td><?=$nomeJogo["nomejogo"] ?></td>
       <td><?=$nomeJogo["valorjogo"] ?></td>
       <td><?=$nomeJogo["qtdjogo"] ?></td>
+      <td><?=$nomeJogo["datalancamentojogo"] ?></td>
       <td><?=$nomeJogo["generojogo"] ?></td>
+      <td>
+      <form action="../view/alterarJogoForm.php" method="GET">
+      
+      <input type="hidden" value="<?=$nomeJogo["idjogo"] ?>" name="codigojogo">
+      <button type="submit" class="btn btn-primary">Alterar</button>
+
+      </form>
+
+    </td>
+    <td>
+        <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary col-12" data-bs-toggle="modal" codigo = "<?=$nomeJogo["idjogo"] ?>" nome = "<?=$nomeJogo["nomejogo"] ?>"  data-bs-target="#deleteModal">
+    Deletar
+    </button>
+    </td>
+    
     </tr>
     <?php
       endforeach;
@@ -60,6 +77,46 @@ foreach($dado as $nomeJogo):
 </table>
 
 </div>
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModal">Exclusão de Usuário</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+
+      <div class="modal-footer">
+
+
+      <form action="../controler/deletarJogo.php" method="GET">
+         <input type="hidden" class="codigo formcontrol" name="codigojogo">
+            <button type="submit" class="btn btn-danger">Excluir</button>
+
+      </form>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  var deletarJogoModal = document.getElementById('deleteModal');
+  deletarJogoModal.addEventListener('show.bs.modal', function(event){
+        
+        var button = event.relatedTarget;
+        var codigo = button.getAttribute('codigo');
+        var nome = button.getAttribute('nome');
+        var modalBody = deletarJogoModal.querySelector('.modal-body');
+        modalBody.textContent = 'Gostaria de excluir o Jogo: ' + nome + '?';
+        var Codigo = deletarJogoModal.querySelector('.modal-footer .codigo');
+        Codigo.value = codigo;
+      })
+  </script>
+  
+
 
 <?php
 

@@ -74,8 +74,8 @@ foreach($dado as $emailUsuarios):
     ?>
   </tbody>
 </table>
-
 </div>
+
 <!-- Modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModal" aria-hidden="true">
   <div class="modal-dialog">
@@ -87,31 +87,34 @@ foreach($dado as $emailUsuarios):
       <div class="modal-body">
         ...
       </div>
+
       <div class="modal-footer">
+
+
       <form action="../controler/deletarUsuario.php" method="GET">
-      
-      <input type="hidden" class="codigo formcontrol" name="codigousu">
-      
+         <input type="hidden" class="codigo formcontrol" name="codigousu">
+            <button type="submit" class="btn btn-danger">Excluir</button>
 
       </form>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
-        <button type="button" class="btn btn-primary">Sim</button>
-      </div>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
+  </div>
     </div>
   </div>
 </div>
 <script>
-  var deletarUsuarioModal = document.getElementbyId('deleteModal');
-      deletarUsuarioModal.addEventListener('show.bs.modal',function(event){
+  var deletarUsuarioModal = document.getElementById('deleteModal');
+      deletarUsuarioModal.addEventListener('show.bs.modal', function(event){
+        
         var button = event.relatedTarget;
         var codigo = button.getAttribute('codigo');
         var email = button.getAttribute('email');
-        var modalbody = deletarUsuarioModal.querySelector('.modal-body');
-        modalbody.textContent = 'Gostaria de excluir o E-mail' + email + '?';
-        var Codigo = deletarUsuarioModel.querySelector('.modal-footer .codigo');
-        codigo.value = codigo;
+        var modalBody = deletarUsuarioModal.querySelector('.modal-body');
+        modalBody.textContent = 'Gostaria de excluir o Email: ' + email + '?';
+        var Codigo = deletarUsuarioModal.querySelector('.modal-footer .codigo');
+        Codigo.value = codigo;
       })
   </script>
+  
 
 <?php
 

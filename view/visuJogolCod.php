@@ -2,7 +2,7 @@
 
 include_once("../view/header.php");
 include_once("../model/conexao.php");
-include_once("../model/usuarioModel.php");
+include_once("../model/jogoModel.php");
 
 ?>
 
@@ -11,10 +11,10 @@ include_once("../model/usuarioModel.php");
 
 <form action="#" method="Post" class="row row-cols-lg-auto g-3 align-items-center">
   <div class="col-12">
-    <label class="visually-hidden" for="inlineFormInputGroupUsername">Código do usuario</label>
+    <label class="visually-hidden" for="inlineFormInputGroupUsername">Código do jogo</label>
     <div class="input-group">
       <div class="input-group-text">Código</div>
-      <input type="text" name="codigoUsu" class="form-control" id="inlineFormInputGroupUsername" placeholder="Código do usuario">
+      <input type="text" name="codigoJogo" class="form-control" id="inlineFormInputGroupUsername" placeholder="Código do jogo">
     </div>
   </div>
 
@@ -30,46 +30,44 @@ include_once("../model/usuarioModel.php");
     <tr>
       <th scope="col">código</th>
       <th scope="col">Nome</th>
-      <th scope="col">Email</th>
-      <th scope="col">Fone</th>
-      <th scope="col">Alterar</th>
-      <th scope="col">Excluir</th>
+      <th scope="col">Valor</th>
+      <th scope="col">Qtd</th>
     </tr>
   </thead>
   <tbody>
   <?php
-$codigousu = isset ($_POST["codigoUsu"])? $_POST["codigoUsu"]:"" ;
-if($codigousu){
+$codigojogo = isset ($_POST["codigoJogo"])? $_POST["codigoJogo"]:"" ;
 
-$dado = visuUsuarioCodigo($conn,$codigousu);
+if($codigojogo){
+
+$dado = visuJogoCodigo($conn,$codigojogo);
 
 if($dado){
 
 ?>
     <tr>
-      <th scope="row"><?=$dado["idusu"] ?></th>
-      <td><?=$dado["nomeusu"] ?></td>
-      <td><?=$dado["emailusu"] ?></td>
-      <td><?=$dado["foneusu"] ?></td>
-    
+    <th scope="row"><?=$dado["idjogo"] ?></th>
+      <td><?=$dado["nomejogo"] ?></td>
+      <td><?=$dado["valorjogo"] ?></td>
+      <td><?=$dado["qtdjogo"] ?></td>
+      <td><?=$dado["datalancamentojogo"] ?></td>
+      <td><?=$dado["generojogo"] ?></td>
+   
     <td>
-    <form action="../view/alterarForm.php" method="post">
+      <form action="../view/alterarJogoForm.php" method="GET">
       
-      <input type="hidden" value="<?=$dado["idusu"] ?>" name="idusu">
-      <button type="submit" class="btn btn-primary">Alterar
+      <input type="hidden" value="<?=$dado["idjogo"] ?>" name="codigojogo">
+      <button type="submit" class="btn btn-primary">Alterar</button>
 
-      </button>
+      </form>
 
-    </form>
     </td>
-
     <td>
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary col-12" data-bs-toggle="modal" codigo = "<?=$dado["idusu"] ?>" email = "<?=$dado["emailusu"] ?>"  data-bs-target="#deleteModal">
+    <button type="button" class="btn btn-primary col-12" data-bs-toggle="modal" codigo = "<?=$dado["idjogo"] ?>" nome = "<?=$dado["nomejogo"] ?>"  data-bs-target="#deleteModal">
     Deletar
     </button>
     </td>
-   
     </tr>
     <?php
     }
@@ -77,7 +75,6 @@ if($dado){
     ?>
   </tbody>
 </table>
-
 
 </div>
 <!-- Modal -->
@@ -95,32 +92,30 @@ if($dado){
       <div class="modal-footer">
 
 
-      <form action="../controler/deletarUsuario.php" method="GET">
-         <input type="hidden" class="codigo formcontrol" name="codigousu">
+      <form action="../controler/deletarJogo.php" method="GET">
+         <input type="hidden" class="codigo formcontrol" name="codigojogo">
             <button type="submit" class="btn btn-danger">Excluir</button>
 
       </form>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
-  </div>
+      </div>
     </div>
   </div>
 </div>
 <script>
-  var deletarUsuarioModal = document.getElementById('deleteModal');
-      deletarUsuarioModal.addEventListener('show.bs.modal', function(event){
+  var deletarJogoModal = document.getElementById('deleteModal');
+  deletarJogoModal.addEventListener('show.bs.modal', function(event){
         
         var button = event.relatedTarget;
         var codigo = button.getAttribute('codigo');
-        var email = button.getAttribute('email');
-        var modalBody = deletarUsuarioModal.querySelector('.modal-body');
-        modalBody.textContent = 'Gostaria de excluir o Email: ' +  codigo + '?';
-        var Codigo = deletarUsuarioModal.querySelector('.modal-footer .codigo');
+        var nome = button.getAttribute('nome');
+        var modalBody = deletarJogoModal.querySelector('.modal-body');
+        modalBody.textContent = 'Gostaria de excluir o Jogo: ' + nome + '?';
+        var Codigo = deletarJogoModal.querySelector('.modal-footer .codigo');
         Codigo.value = codigo;
       })
   </script>
-
-
-
+  
 
 <?php
 

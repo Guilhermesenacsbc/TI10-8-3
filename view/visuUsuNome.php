@@ -57,7 +57,12 @@ foreach($dado as $nomeUsuarios):
 
     </form>
     </td>
-      <td><?=$nomeUsuarios["idusu"] ?></td>
+    <td>
+        <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary col-12" data-bs-toggle="modal" codigo = "<?=$nomeUsuarios["idusu"] ?>" email = "<?=$nomeUsuarios["emailusu"] ?>"  data-bs-target="#deleteModal">
+    Deletar
+    </button>
+    </td>
    
     </tr>
     <?php
@@ -68,6 +73,52 @@ foreach($dado as $nomeUsuarios):
 </table>
 
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModal">Exclusão de Usuário</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+
+      <div class="modal-footer">
+
+
+      <form action="../controler/deletarUsuario.php" method="GET">
+         <input type="hidden" class="codigo formcontrol" name="codigousu">
+            <button type="submit" class="btn btn-danger">Excluir</button>
+
+      </form>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
+  </div>
+    </div>
+  </div>
+</div>
+<script>
+  var deletarUsuarioModal = document.getElementById('deleteModal');
+      deletarUsuarioModal.addEventListener('show.bs.modal', function(event){
+        
+        var button = event.relatedTarget;
+        var codigo = button.getAttribute('codigo');
+        var email = button.getAttribute('email');
+        var modalBody = deletarUsuarioModal.querySelector('.modal-body');
+        modalBody.textContent = 'Gostaria de excluir o Email: ' + email + '?';
+        var Codigo = deletarUsuarioModal.querySelector('.modal-footer .codigo');
+        Codigo.value = codigo;
+      })
+  </script>
+  
+
+<?php
+
+include_once("../view/footer.php")
+
+?>
 
 <?php
 
