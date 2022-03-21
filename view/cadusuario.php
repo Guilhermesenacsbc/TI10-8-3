@@ -5,35 +5,20 @@ include_once("header.php");
 <div class="container">
 
 <form class="row g-3" action="../controler/inserirCadastro.php" method="Get">
-  <div class="col-md-6">
+  <div class="col-md-12">
     <label for="inputNome4" class="form-label">Nome</label>
     <input type="text" name="nomeusu" class="form-control" id="inputNome4" required>
   </div>
-  <div class="col-md-6">
-    <label for="inputEmail4" class="form-label">Email</label>
-    <input type="email" name="emailusu" class="form-control" id="inputEmail4" required>
-  </div>
-  <div class="col-6">
+  
+  <div class="col-4">
     <label for="inputFone" class="form-label">Fone</label>
     <input type="text" name="foneusu" class="form-control" id="inputfone" placeholder="(11)969480059" required>
   </div>
-  <div class="col-6">
+  <div class="col-4">
     <label for="inputCPF" class="form-label">CPF</label>
     <input type="text" name="cpfusu" class="form-control" id="inputCPF" placeholder="777.777.777-77" required>
   </div>
   <div class="col-md-4">
-    <label for="inputCEP" class="form-label">CEP</label>
-    <input type="text" name="cepusu" class="form-control" id="inputCEP" placeholder="00000-000" required>
-  </div>
-  <div class="col-4">
-    <label for="inputNumero" class="form-label">Número</label>
-    <input type="number" name="numusu" class="form-control" id="inputNumero" placeholder="00" required>
-    <div class="col-5">
-    <label for="inputComple" class="form-label">Complemento</label>
-    <input type="text" name="compusu" class="form-control" id="inputComple" placeholder="Casa 2/Bloco -A">
-  </div>
-  </div>
-  <div class="col-md-6">
     <label for="inputTipo" class="form-label">Tipo de usuário</label>
     <select id="inputTipo" name="tipousu" class="form-select">
       <option selected>Escolha...</option>
@@ -41,6 +26,33 @@ include_once("header.php");
       <option value="Cliente"> Cliente</option>
     </select>
   </div>
+  <div class="col-md-2">
+    <label for="inputCEP" class="form-label">CEP</label>
+    <input type="text" name="cepusu" class="form-control" id="inputCEP" placeholder="00000-000" required>
+  </div>
+  <div class="col-2">
+    <label for="inputNumero" class="form-label">Número</label>
+    <input type="number" name="numusu" class="form-control" id="inputNumero" placeholder="00" required>
+</div>
+    <div class="col-8">
+
+    <label for="inputComple" class="form-label">Complemento</label>
+    <input type="text" name="compusu" class="form-control" id="inputComple" placeholder="Casa 2/Bloco -A">
+</div>
+  <div class="col-md-6">
+    <label for="inputEmail4" class="form-label">Email</label>
+    <input type="email" name="emailusu" class="form-control" id="inputEmail4" required>
+  </div>
+  <div class="col-3">
+    <label for="inputSenha" class="form-label">Senha</label>
+    <input type="password" name="senhausu" class="form-control" id="inputSenha" required>
+  </div>
+  <div class="col-3">
+    <label for="inputPin" class="form-label">Digite o PIN</label>
+    <input type="password" name="pinusu" class="form-control" id="inputPin">
+  </div>
+  
+  
  
   <div class="col-12">
     <div class="form-check">
